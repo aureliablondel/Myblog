@@ -1,0 +1,313 @@
+@font-face{
+    font-family: Roboto-light;    
+    src: url(http://myblog.test/app/public/front/fonts/roboto-light-webfont.woff);        
+}
+@font-face{
+    font-family: Cupcake;
+    src: url(http://myblog.test/app/public/front/fonts/cupcake_font-webfont.woff);
+}
+@font-face{
+    font-family: Believe-it;
+    src: url(http://myblog.test/app/public/front/fonts/believe_it-webfont.woff);
+}
+/*============= Reset =============*/
+*{
+    margin: 0;
+    padding: 0;
+}
+/*============= Médiaquery pour mobile ========*/
+body{
+    width: 100%;
+    font-family: 'Roboto-light';    
+}
+    /*-------------- header -------------*/
+.header-container{
+    width: 100%;
+    position: sticky;
+    top: 0;   
+    display: flex;
+    justify-content: space-between;
+    background-color: #2a4e62;     
+}
+.logo-block{
+    width: 30%;
+    padding: 30px;
+}
+.logo-block a{
+    font-family: 'Believe-it';
+    font-size: 3rem;
+    color: #e4e4e4;
+    text-decoration: none;
+}
+.right-block{     
+    width: 60%;
+    padding-top: 20px;
+    padding-right: 30px;   
+}
+.search-form{
+    display: flex;
+    justify-content: flex-end;
+}
+.search-form input{    
+    background-color: #e4e4e4;
+    color: #2a4e62;
+    height: 30px;
+    width: 120px;
+    font-family: 'Roboto-light' ;
+    padding-left: 10px;
+    border: none;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+.search-form input::placeholder{
+    color: #b1bac7;
+}
+.search-form button{
+    background-color: #2a4e62;
+    width: 20%;    
+    border: none;
+    padding-left: 15px;
+}
+.search-form i{
+    color: #e4e4e4;
+    font-size: 1.5rem;
+}
+.log-container{ 
+    padding-top: 20px;
+    text-align: right;
+}
+.log-container a{
+    color: #e4e4e4;
+    text-decoration: none;    
+}
+.nav-container{    
+    text-align: right;   
+    padding-top: 15px;
+    padding-bottom: 20px;    
+}
+#burger i{    
+    font-size: 2rem;
+    cursor: pointer;
+    color: #e4e4e4;
+}
+#header-menu ul{
+    display: none;
+}
+#header-menu ul li{
+    list-style-type: none;
+    padding-top: 15px;
+}   
+#header-menu ul li a{
+    color: #e4e4e4;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+    /*=================== page ACCUEIL =================*/
+.main-content{
+    width: 100%;          
+}
+/*.principal-img{
+    width: 100%;  
+} */  
+.principal-img img{
+    width: 100%;
+}
+.title-block{
+    background-color: #e4e4e4;
+    position: relative;
+    top: -100px;
+    opacity: 0.7;
+    height: 80px;
+}
+.principal-title{
+    font-family: 'Cupcake';
+    font-size: 1.2rem;
+    text-align: center;
+    color: #001c2f;   
+    padding: 0 20px;
+    position: relative;
+    top: -150px;     
+}
+.intro-container{        
+    padding: 50px 20px 30px;    
+}
+.articles-block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    margin-bottom: 40px;       
+}
+.article-img{
+    width: 80%;
+}
+.article-img img{
+   width: 100%;
+}
+.article-text{ 
+    width: 80%;
+    font-size: 0.8rem;    
+}
+.article-text h3{    
+    color:#2a4e62;
+    font-family: 'Cupcake';
+    padding: 10px 0;
+}
+.article-text p{
+    text-align: justify;
+}
+.split-block{    
+    height: 80px;
+    background-image: url("/app/public/front/images/white-flowers.jpg");
+    background-position: center;
+    background-size: cover;
+    /*background-color: #001c2f;*/
+    background-color: transparent;
+    opacity: 0.7;
+    
+    
+}
+ .split-title{
+    position: relative;
+    top: -55px;
+    text-align: center;
+    color: #001c2f;
+    font-family: 'Cupcake';
+    
+}
+
+footer{
+    padding-top: 30px;
+    margin-top: 30px;
+    background-color: #2a4e62;
+    color: #eeedff;
+    text-align: center;
+    height: 70px;
+}
+    /*============ pages INSCRIPTION / CONNEXION / DASHBOARDUSER ==============*/
+.color-content{
+    background-color: #b1bac7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 80px;
+}
+.title-signup{
+    padding: 80px 30px 40px;    
+    text-align: center;
+}
+.title-signup h2{
+    padding-bottom: 20px;
+}
+.title-signup span{
+    font-family: 'Cupcake';
+    color: #2a4e62;
+    font-size: 1.8rem;
+    margin-left: 10px;
+}
+.title-signup p{
+    font-size: 0.8rem;    
+}
+.title-dashboard{
+    margin-bottom: 30px;
+}
+.form-signup{
+    display: flex;
+    flex-direction: column;
+    width: 80%;    
+    padding-bottom: 20px; 
+    align-items: center;   
+}
+.form-signup input{
+    background-color: #e4e4e4;    
+    border: none;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 60%;     
+}
+.input::placeholder{
+    color: #b1bac7;
+}
+.form-signup textarea{
+    width: 100%;
+    height: 150px;
+}
+.btn-form{
+    width: 120px;
+    text-align: center;
+    margin-top: 20px;
+}
+.btn-form .btn-submit{
+    background-color: none;
+    background-color: #2a4e62;
+    color: #e4e4e4;
+    padding: 10px;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.btn-submit:active{
+    background-color: #e4e4e4;
+    color: #2a4e62;        
+}
+
+.display-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+.display-article{
+    padding-bottom: 50px;
+    width: 100%;
+}
+.display-img img{
+    width: 100%;
+}
+.date-edit{
+    text-align: right;
+    font-style: italic;
+    font-size: 0.8rem;
+}
+.display-article h2{
+    text-align: start;
+    padding: 30px 0 20px;
+    font-family: 'Cupcake';
+}
+.display-content{
+    text-align: justify;
+}
+.form-comment{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.form-comment h3{
+    text-align: left;
+    padding-bottom: 20px;
+}
+.form-comment textarea, .form-comment input{
+    width: 90%;    
+    margin-bottom: 10px;    
+    background-color: #e4e4e4;    
+    border: none;
+    border-radius: 5px;    
+    padding: 10px;
+    font-family: 'Roboto-light';    
+}
+.form-comment textarea{
+    height: 80px;
+}.form-comment textarea::placeholder, .form-comment input::placeholder{
+    color: #b1bac7;
+}
+
+
