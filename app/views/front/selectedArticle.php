@@ -36,6 +36,7 @@
     <p><?= htmlspecialchars($getComment['contentComment']) ?></p>
     <?php endforeach ?>
 </section>
+lmùlmùlmù
 <?php
     $content = ob_get_clean();
     require 'templates/template.php';
