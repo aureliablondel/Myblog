@@ -12,27 +12,34 @@ class UserManager extends Manager{
     }
 
     // requête pour créer nouvel utilisateur
-    public function registerUser($pseudo, $mail, $password){
+    public function registerUser($pseudo, $mail, $registeredPass){
         $bdd = $this->dbConnect();
         $user = $bdd->prepare('INSERT INTO users(pseudo, mail, password) VALUE (?,?,?)');
-        $user->execute([$pseudo, $mail, $password]);
+        $user->execute([$pseudo, $mail, $registeredPass]);
     }
 
+    // ----------------------------------------------------------------------------
     // requête pour récupérer le mot de passe de l'utilisateur pour vérification
+    // ----------------------------------------------------------------------------
+
     public function recupPassword($pseudo){
         $bdd = $this->dbConnect();
-        $req = $bdd->prepare('SELECT * FROM users WHERE pseudo = ?');
+        $req = $bdd->prepare('SELECT user_id, pseudo, password FROM users WHERE pseudo = ?');
         $req->execute(array($pseudo));
+        return $req;
+    }
 
-    return $req;
-    }
+    // --------------------------------------
     //requête pour changer le mot de passe
-    public function changePassword($id,$newPassword){
+    // --------------------------------------
+
+    public function changePassword($idUser, $newPassword){
         $bdd = $this->dbConnect();
-        $req = $bdd->prepare('UPDATE users SET password = newPassword WHERE user_id = 11');
+        $req = $bdd->prepare('UPDATE users SET password = :newpassword WHERE user_id = :user_id');
         $req->execute([
-            'user_id' => $id,
-            'password' => $newPassword
+            'user_id' => $idUser,
+            'newpassword' => $newPassword
         ]);
-    }
+    }  
+
 }

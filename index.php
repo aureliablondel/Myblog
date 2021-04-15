@@ -18,68 +18,160 @@ try{
         if($_GET['action'] == 'blog'){
             $frontController->blog();
         }
-        // sélection d'un article
+        // sélection d'un article 
         if($_GET['action'] == 'readArticle'){
-            $id = $_GET['id'];
+            $id = $_GET['id'];            
             $frontController->display($id);
         }
-        /*============== GESTION DES UTILISATEURS =================*/
+
+        if($_GET['action'] == 'readNext'){
+            $id = $_GET['id'];            
+            $frontController->nextArticle($id);
+        }
+        /*
+        
+            ============== GESTION DES UTILISATEURS =================
+            
+        */
         // envoi sur le formulaire d'inscription
         if($_GET['action'] == 'signUp'){
             $frontController->signUp();
         }
         // enregistrement du nouvel utilisateur
         if($_GET['action'] == 'registerUser'){
+            $id = $_GET['id'];
             $pseudo = htmlspecialchars($_POST['pseudo']);
             $mail = htmlspecialchars($_POST['mail']);
-            $password = htmlspecialchars($_POST['password']);
-            $password = password_hash($password, PASSWORD_DEFAULT);
-            $frontController->registerUser($pseudo, $mail, $password);
+            // $mail = filter_var($mail, FILTER_SANITIZE_EMAIL);
+            
+           
+        $password = htmlspecialchars($_POST['password']);
+        $confirmPassword = htmlspecialchars($_POST['confirm-password']);
+        $registeredPass = password_hash(htmlspecialchars($_POST['password']), PASSWORD_DEFAULT);
+        $frontController->registerUser($id, $pseudo, $mail, $password, $confirmPassword, $registeredPass);
         }
         // confirmation inscription
         if($_GET['action'] == 'confirmRegister'){
             $frontController->confirmRegister();
         }
+
+        // ----------------------------------------
         // envoi sur le formulaire de connexion
+        // ----------------------------------------
+        
         if($_GET['action'] == 'logIn'){
             $frontController->logIn();
         }
+
+        // -------------------------
         // connexion utilisateur
-        if($_GET['action'] == 'connectUser'){
+        // -------------------------
+
+        if($_GET['action'] == 'connectUser'){            
             $pseudo = htmlspecialchars($_POST['pseudo']);
             $password = htmlspecialchars($_POST['password']);
-            if(!empty($pseudo && !empty($password))){          
+            if(!empty($pseudo && $password)){          
                 $frontController->connectUser($pseudo, $password);
-            }else{
-                throw new Exception('Renseigner vos identifiants');
+            }else{                
+                $frontController->errorConnect();
             }
         }
-        // envoi sur le tableau de bord de l'utilisateur
-        if($_GET['action'] == 'dashboardUser'){
-            if(!empty($_SESSION['pseudo'])){
-            $frontController->dashboardUser();
-        }}
+
+        // -----------------------
         // changer mot de passe
+        // -----------------------
+
         if($_GET['action'] == 'changePassword'){
-            $id = $_GET['id'];
-            //$password = htmlspecialchars($_POST['password']);           
-            $newPassword = htmlspecialchars($_POST['newPassword']);
-            //$newPassword = password_hash($password, PASSWORD_DEFAULT);
-            // $confirmPassword = htmlspecialchars($_POST['confirmPassword']);
-            $frontController->changePassword($id, $newPassword);
+            $idUser = $_GET['id'];            
+            $password = $_SESSION['password'];
+            $pseudo = $_SESSION['pseudo'];
+            $oldPassword = htmlspecialchars($_POST['oldpassword']);
+            $newPassword = password_hash(htmlspecialchars($_POST['newpassword']), PASSWORD_DEFAULT);        
+            $confirmPassword = htmlspecialchars($_POST['confirmpassword']);           
+                        
+            if(!empty($oldPassword && $newPassword && $confirmPassword)){          
+                $frontController->changePassword($idUser, $pseudo, $password, $oldPassword, $newPassword, $confirmPassword);
+            }else{                
+                $frontController->errorChangePass();
+            }          
         }
+        
         /*================ POST COMMENTAIRES ================*/
+        // accéder au formulaire de connexion de l'espace membre
+        if($_GET['action'] == 'goSpaceMember'){
+            $frontController->goSpaceMember();
+        }
+        
         // poster un commentaire
         if($_GET['action'] == 'postComment'){
-            $id = $_GET['id'];
+            $idArticle = $_GET['id'];
+            $idUser = $_SESSION['user_id'];
             $contentComment = htmlspecialchars($_POST['comment']);            
-            $frontController->postComment($contentComment, $id);
+            $frontController->postComment($contentComment, $idUser, $idArticle);
         }
-        // afficher tous les commentaires liés à l'article
-        // if($_GET['action'] == 'readArticle'){
-            // $id = $_GET['id'];
-           // $frontController->getComments($id);
+
+        // -----------------------------------------------
+        // afficher le commentaire à modifier
+        // -----------------------------------------------
         
+        if($_GET['action'] == 'updateComment'){
+            $commentId = $_GET['id'];
+            $frontController->editComment($commentId);          
+        }
+
+        // ---------------------------
+        // modifier le commentaire
+        // ---------------------------
+
+        if($_GET['action'] == 'submitComment'){
+            $commentId = $_GET['id'];            
+            $updateComment = htmlspecialchars($_POST['contentComment']);
+            $date = $_POST['date'];
+            $frontController->updateComment($commentId, $updateComment, $date);
+        }
+
+        // --------------------------
+        // supprimer le commentaire
+        // --------------------------
+
+        if($_GET['action'] == 'deleteComment'){
+            $commentId = $_GET['id'];
+            $frontController->deleteComment($commentId);
+        }
+
+        // connexion pour poster commentaire
+        if($_GET['action'] == 'connectForPost'){
+            $id = $_GET['id'];
+            $pseudo = htmlspecialchars($_POST['pseudo']);
+            $password = htmlspecialchars($_POST['password']);
+            if(!empty($pseudo && $password)){          
+                $frontController->connectForPost($id, $pseudo, $password);
+            }else{                
+                $frontController->errorConnect();
+            }
+        }
+        /*if($_GET['action'] == 'connectUserComment'){
+            $id = $_GET['id'];
+            $idUser = $_SESSION['user_id'];
+            $pseudo = htmlspecialchars($_POST['pseudo']);
+            $password = htmlspecialchars($_POST['password']);
+            if(!empty($pseudo && $password)){          
+                $frontController->connectUserComment($id, $idUser, $pseudo, $password);
+            }else{                
+                $frontController->errorConnect();
+            }
+        }*/
+
+        // --------------
+        // Déconnexion
+        // --------------
+
+        if($_GET['action'] == 'disconnection'){
+            // session_unset();
+            session_destroy(); // on ferme la session
+            header('Location: index.php');
+        }
+
 
 
 

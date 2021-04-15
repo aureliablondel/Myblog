@@ -22,16 +22,16 @@
                     <button><i class="fas fa-search"></i></button>
                 </form>       
             </div>
-            <div class="log-container">
-                <a href="index.php?action=signUp">S'inscrire |</a>                
-                <a href="index.php?action=logIn">Se connecter</a>
-            </div>            
+            <div class="log-container">                              
+                <a class="space-member" href="index.php?action=logIn">Espace membre</a>
+                <a class="power-off" title="Déconnexion" href="index.php?action=disconnection"><i class="fas fa-power-off"></i></a>
+
             <div class="nav-container">
                 <div id="burger"> <!------------menu burger---------->
                     <i class="fas fa-bars"></i>
                 </div>
                 <nav id="header-menu">
-                    <ul>
+                    <ul id="list-menu">
                         <li><a href="/">Accueil</a></li>
                         <li><a href="index.php?action=blog">Blog</a></li>
                         <li><a href="">Tutoriels</a></li>                
@@ -49,7 +49,9 @@
         <div>Copyright Aurélia - Kercode - 2021</div>
     </footer>
     
-    <script src="app/public/front/js/jquery-1.9.0.min.js"></script>    
-    <script src="app/public/front/js/burger.js"></script>  
+    <!-- <script src="app/public/front/js/jquery-1.9.0.min.js"></script>     -->
+    <script src="app/public/front/js/burger.js"></script>
+    <script src="app/public/front/js/passwordMask.js"></script>
+    <script src="app/public/front/js/connectButton.js"></script>
 </body>
 </html>

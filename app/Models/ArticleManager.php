@@ -16,7 +16,7 @@ class ArticleManager extends Manager{
     // requête pour afficher tous les articles de la table en ordre inverse de création
     public function getArticles(){
         $bdd = $this->dbConnect();
-        $req = $bdd->query('SELECT * FROM articles INNER JOIN images ON articles.idImg = images.img_id ORDER BY art_id DESC');
+        $req = $bdd->query('SELECT * FROM articles LEFT JOIN images ON articles.idImg = images.img_id ORDER BY art_id DESC');
         return $req;
     }
     // requête pour afficher l'article sélectionné dans la liste
@@ -46,12 +46,36 @@ class ArticleManager extends Manager{
     }
     /*================= REQUETES EN FRONT ===============*/
 
-    // requête pour afficher articles sur page d'accueil
-    public function showArticles(){
+    // --------------------------------------------------------------
+    // requête pour afficher les articles de catégorie accueil
+    // --------------------------------------------------------------
+    
+    public function getIntroArticles(){
         $bdd = $this->dbConnect();
-        $req = $bdd->query('SELECT title,content,img,titleImg  FROM  articles LEFT JOIN images ON articles.idImg = images.img_id WHERE category = "accueil" ORDER BY dateEdit DESC LIMIT 4');
+        $req = $bdd->query('SELECT title, content, img, titleImg FROM articles LEFT JOIN images ON articles.idImg = images.img_id WHERE category = "accueil" ORDER BY dateEdit DESC');
         return $req;
     }
+
+    // --------------------------------------------------------------
+    // requête pour afficher l'article de la catégorie profil
+    // --------------------------------------------------------------
+    
+    public function getProfileArticle(){
+        $bdd = $this->dbConnect();
+        $req = $bdd->query('SELECT title, content, img, titleImg FROM articles LEFT JOIN images ON articles.idImg = images.img_id WHERE category = "profil"');
+        return $req;
+    }
+
+    // -------------------------------------------------------
+    // requête pour afficher les 4 derniers articles publiés
+    // -------------------------------------------------------
+
+    public function getLastArticles(){
+        $bdd = $this->dbConnect();
+        $req = $bdd->query('SELECT art_id, title, content, img, titleImg, dateEdit FROM articles LEFT JOIN images ON articles.idImg = images.img_id WHERE category = "blog" ORDER BY dateEdit DESC LIMIT 4');
+        return $req;
+    }
+
     //requête pour recherche
     public function search($search){
         $bdd = $this->dbConnect();
@@ -73,6 +97,13 @@ class ArticleManager extends Manager{
         return $req;
     }
 
+    // requête pour afficher le détail de l'article sélectionné
+    public function detailArticle($id){
+        $bdd = $this->dbConnect();
+        $req = $bdd->prepare('SELECT subtitle, subcontent FROM details LEFT JOIN articles ON articles.art_id = details.idBlogArt WHERE art_id = ?');
+        $req->execute([$id]);
+        return $req;
+    }
 
 
 

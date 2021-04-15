@@ -9,7 +9,7 @@
         <p>Accédez à votre espace pour gérer vos commentaires et votre profil.</p>
     </div>
 
-    <form class="form-signup" action="index.php?action=connectUser" method="POST">
+    <form class="form-signup" action="index.php?action=connectForPost" method="POST">
         
         <input class="input-range" type="text" id="pseudo" name="pseudo" placeholder="Pseudo">       
         

@@ -1,10 +1,11 @@
-$(document).ready(function(){
-    $("#burger").click(function(){
-        $("#header-menu ul").toggle(1000);
-    });
-});
+let togglemenu = document.querySelector('.fa-bars');
+let list = document.getElementById('list-menu');
 
-// document.getElementById('burger').addEventListener('click', (event)=>{
-    // document.getElementById('list').classList.toggle('switch');
-// });
-  
+togglemenu.addEventListener('click', (event)=>{    
+    togglemenu.classList.toggle('fa-times');    
+    if(list.style.display == 'block'){              
+        list.style.display = 'none';              
+    }else{
+        list.style.display = 'block';        
+    }        
+});
