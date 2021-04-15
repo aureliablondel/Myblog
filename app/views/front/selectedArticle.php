@@ -76,7 +76,7 @@
     
 
 
-<section class="">        
+<section class="comment-block">        
     <?php foreach($getComments as $getComment): ?>   
         <p><?= htmlspecialchars($getComment['contentComment']) ?></p>
         <p>Publié le<?= $getComment['dateComment'] ?></p>           
